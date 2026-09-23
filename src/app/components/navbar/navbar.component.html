@@ -7,7 +7,7 @@
       </div>
 
       <!-- Navegación en PC -->
-      <nav class="hidden md:flex items-center gap-6 text-sm font-medium">
+      <nav aria-label="Navegación principal" class="hidden md:flex items-center gap-6 text-sm font-medium">
         <a href="#inicio" (click)="cerrarMenu()" class="hover:text-blue-200 transition-colors">Inicio</a>
         <a href="#proceso" (click)="cerrarMenu()" class="hover:text-blue-200 transition-colors">Proceso</a>
         <a href="#requisitos" (click)="cerrarMenu()" class="hover:text-blue-200 transition-colors">Requisitos</a>
@@ -31,7 +31,7 @@
 
     <!-- Menú móvil -->
     @if (menuAbierto) {
-      <nav class="md:hidden flex flex-col gap-1 pb-4 fade-in text-sm font-medium">
+      <nav aria-label="Navegación móvil" class="md:hidden flex flex-col gap-1 pb-4 fade-in text-sm font-medium">
         <a href="#inicio" (click)="cerrarMenu()" class="py-2 px-2 rounded hover:bg-blue-800">Inicio</a>
         <a href="#proceso" (click)="cerrarMenu()" class="py-2 px-2 rounded hover:bg-blue-800">Proceso</a>
         <a href="#requisitos" (click)="cerrarMenu()" class="py-2 px-2 rounded hover:bg-blue-800">Requisitos</a>

@@ -8,6 +8,7 @@ import {
 } from '../../models/matricula.model';
 
 const EXTENSIONES_PERMITIDAS = ['pdf', 'jpg', 'jpeg', 'png'];
+const PATRON_NOMBRE = /^[A-Za-zÁÉÍÓÚáéíóúÑñÜü\s'-]+$/;
 
 type ClaveDocumento = keyof Documentos;
 
@@ -57,8 +58,8 @@ export class ProcesoMatriculaComponent {
 
   constructor(private fb: FormBuilder, private matriculaService: MatriculaService) {
     this.formEstudiante = this.fb.group({
-      nombres: ['', Validators.required],
-      apellidos: ['', Validators.required],
+      nombres: ['', [Validators.required, Validators.pattern(PATRON_NOMBRE)]],
+      apellidos: ['', [Validators.required, Validators.pattern(PATRON_NOMBRE)]],
       dni: ['', [Validators.required, Validators.pattern(/^\d{8}$/)]],
       fechaNacimiento: ['', Validators.required],
       grado: ['', Validators.required],
@@ -66,7 +67,7 @@ export class ProcesoMatriculaComponent {
     });
 
     this.formApoderado = this.fb.group({
-      nombreCompleto: ['', Validators.required],
+      nombreCompleto: ['', [Validators.required, Validators.pattern(PATRON_NOMBRE)]],
       dni: ['', [Validators.required, Validators.pattern(/^\d{8}$/)]],
       telefono: ['', [Validators.required, Validators.pattern(/^\d{9}$/)]],
       correo: ['', [Validators.required, Validators.email]],
@@ -77,6 +78,28 @@ export class ProcesoMatriculaComponent {
 
   get porcentajeProgreso(): number {
     return (this.pasoActual / this.totalPasos) * 100;
+  }
+
+  limpiarTexto(evento: Event, formulario: FormGroup, campo: string): void {
+    const input = evento.target as HTMLInputElement;
+    const valorLimpio = input.value.replace(/[^A-Za-zÁÉÍÓÚáéíóúÑñÜü\s'-]/g, '');
+    this.actualizarEntrada(input, formulario, campo, valorLimpio);
+  }
+
+  limpiarNumeros(evento: Event, formulario: FormGroup, campo: string): void {
+    const input = evento.target as HTMLInputElement;
+    const valorLimpio = input.value.replace(/\D/g, '');
+    this.actualizarEntrada(input, formulario, campo, valorLimpio);
+  }
+
+  private actualizarEntrada(
+    input: HTMLInputElement,
+    formulario: FormGroup,
+    campo: string,
+    valor: string,
+  ): void {
+    input.value = valor;
+    formulario.get(campo)?.setValue(valor, { emitEvent: false });
   }
 
   irAPaso(paso: number): void {

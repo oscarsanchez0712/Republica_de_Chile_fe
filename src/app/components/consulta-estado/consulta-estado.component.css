@@ -1,0 +1,28 @@
+:host {
+	display: block;
+}
+
+section {
+	background: #eef1f5 !important;
+}
+
+section h2 {
+	text-align: left !important;
+	font-size: 20px !important;
+}
+
+section .max-w-xl {
+	border: 1px solid #d9e1eb !important;
+	border-radius: 6px !important;
+	background: #ffffff !important;
+	box-shadow: 0 5px 18px rgba(24, 45, 77, .06);
+}
+
+section .bg-blue-600 {
+	background: #2161bd !important;
+	border-radius: 4px !important;
+}
+
+section .bg-green-100 {
+	border-radius: 4px !important;
+}

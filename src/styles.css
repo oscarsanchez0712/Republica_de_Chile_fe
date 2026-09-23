@@ -9,9 +9,101 @@ html {
 
 body {
   margin: 0;
-  font-family: 'Segoe UI', Roboto, Arial, sans-serif;
-  background-color: #f3f4f6;
-  color: #1f2937;
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+  background-color: #eef1f5;
+  color: #172033;
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+:root {
+  --azul-institucional: #123873;
+  --azul-accion: #2161bd;
+  --borde: #dce3ec;
+}
+
+section {
+  border-bottom: 1px solid #e1e6ed;
+}
+
+header {
+  background: var(--azul-institucional) !important;
+  box-shadow: none !important;
+}
+
+header .h-16 {
+  height: 54px !important;
+}
+
+header .font-bold {
+  font-size: 11px !important;
+  letter-spacing: .02em !important;
+}
+
+header .text-xs {
+  font-size: 8px !important;
+  color: #b9d2f5 !important;
+}
+
+main > section > div,
+main > app-comprobante > section > div {
+  max-width: 980px !important;
+}
+
+h1, h2, h3, h4, p {
+  letter-spacing: 0;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+  font-weight: 650;
+}
+
+h2 {
+  font-size: 20px !important;
+  line-height: 1.25 !important;
+}
+
+input, select {
+  min-height: 38px;
+  border-color: var(--borde) !important;
+  background: #fbfcfe;
+  color: #26364d;
+  font-size: 12px;
+}
+
+input:focus, select:focus {
+  border-color: var(--azul-accion) !important;
+  box-shadow: 0 0 0 2px rgba(33, 97, 189, .12) !important;
+}
+
+button, a {
+  transition: background-color .18s ease, border-color .18s ease, transform .18s ease;
+}
+
+button:not(:disabled):hover, a:hover {
+  transform: translateY(-1px);
+}
+
+footer {
+  background: var(--azul-institucional) !important;
+}
+
+@media (max-width: 640px) {
+  body {
+    font-size: 12px;
+  }
+
+  main > section > div,
+  main > app-comprobante > section > div {
+    padding: 28px 16px !important;
+  }
+
+  h2 {
+    font-size: 17px !important;
+    text-align: left !important;
+    margin-bottom: 18px !important;
+  }
 }
 
 /* Barra de progreso de pasos */

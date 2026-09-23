@@ -1,0 +1,81 @@
+:host {
+	display: block;
+}
+
+section {
+	background: #eef1f5 !important;
+}
+
+section > div {
+	max-width: 680px !important;
+	padding-top: 34px !important;
+	padding-bottom: 42px !important;
+}
+
+section h2 {
+	text-align: left !important;
+	color: #182d4d !important;
+	font-size: 22px !important;
+	margin-bottom: 22px !important;
+}
+
+.paso-selector {
+	border: 0;
+	padding: 0;
+	background: transparent;
+	font: inherit;
+	color: inherit;
+}
+
+section > div > div:last-child {
+	border: 1px solid #d9e1eb;
+	border-radius: 6px !important;
+	box-shadow: 0 5px 18px rgba(24, 45, 77, .06) !important;
+}
+
+.paso-punto {
+	width: 28px !important;
+	height: 28px !important;
+	border-width: 1px !important;
+	border-radius: 4px !important;
+	font-size: 11px !important;
+}
+
+section button.bg-blue-600 {
+	background: #2161bd !important;
+	border-radius: 4px !important;
+	min-height: 36px;
+	font-size: 12px;
+}
+
+section label {
+	color: #263c5a !important;
+	font-size: 11px !important;
+}
+
+section h3 {
+	color: #19345b !important;
+	font-size: 16px !important;
+	border-bottom: 1px solid #e7ebf0;
+	padding-bottom: 12px;
+}
+
+section .border-gray-200 {
+	border-color: #dfe5ed !important;
+	border-radius: 5px !important;
+	background: #fbfcfe;
+}
+
+@media (max-width: 640px) {
+	section > div {
+		padding: 26px 14px 34px !important;
+	}
+
+	section h2 {
+		font-size: 18px !important;
+	}
+
+	section > div > div:last-child {
+		padding: 16px !important;
+	}
+}

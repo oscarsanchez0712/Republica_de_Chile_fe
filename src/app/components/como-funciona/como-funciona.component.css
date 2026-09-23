@@ -1,0 +1,31 @@
+:host {
+	display: block;
+}
+
+section {
+	background: #f7f9fc !important;
+}
+
+section > div {
+	padding-top: 32px !important;
+	padding-bottom: 32px !important;
+}
+
+section h2 {
+	text-align: left !important;
+	font-size: 18px !important;
+	margin-bottom: 16px !important;
+}
+
+section .grid > div {
+	border: 1px solid #dce4ee !important;
+	border-radius: 5px !important;
+	box-shadow: none !important;
+	padding: 16px !important;
+	text-align: left !important;
+}
+
+section .grid > div > div:first-child {
+	color: #2161bd !important;
+	font-size: 20px !important;
+}

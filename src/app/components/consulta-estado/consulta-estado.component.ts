@@ -21,6 +21,16 @@ export class ConsultaEstadoComponent {
 
   seleccionarTipo(tipo: TipoBusqueda): void {
     this.tipoBusqueda = tipo;
+    this.valorBusqueda = '';
+  }
+
+  limpiarBusqueda(evento: Event): void {
+    const input = evento.target as HTMLInputElement;
+    const valorLimpio = this.tipoBusqueda === 'dni'
+      ? input.value.replace(/\D/g, '').slice(0, 8)
+      : input.value.toUpperCase().replace(/[^A-Z0-9-]/g, '');
+    input.value = valorLimpio;
+    this.valorBusqueda = valorLimpio;
   }
 
   consultar(): void {

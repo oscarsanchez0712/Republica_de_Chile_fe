@@ -10,7 +10,8 @@
              [style.width.%]="((pasoActual - 1) / (totalPasos - 1)) * 100"></div>
 
         @for (n of [1,2,3,4,5]; track n) {
-          <div class="flex flex-col items-center gap-1 cursor-pointer" (click)="irAPaso(n)">
+          <button type="button" class="paso-selector flex flex-col items-center gap-1 cursor-pointer"
+            (click)="irAPaso(n)">
             <div class="paso-punto w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold border-2"
                  [class.bg-blue-600]="n <= pasoActual"
                  [class.text-white]="n <= pasoActual"
@@ -21,7 +22,7 @@
               {{ n }}
             </div>
             <span class="text-[10px] sm:text-xs text-gray-500 hidden sm:block">Paso {{ n }}</span>
-          </div>
+          </button>
         }
       </div>
     </div>
@@ -35,8 +36,9 @@
 
           <div class="grid sm:grid-cols-2 gap-4">
             <div>
-              <label class="block text-sm font-medium text-gray-700 mb-1">Nombres</label>
-              <input type="text" formControlName="nombres"
+              <label for="estudiante-nombres" class="block text-sm font-medium text-gray-700 mb-1">Nombres</label>
+              <input id="estudiante-nombres" type="text" formControlName="nombres" autocomplete="given-name"
+                (input)="limpiarTexto($event, formEstudiante, 'nombres')"
                      class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
               @if (mensajeErrorEstudiante('nombres')) {
                 <p class="text-red-600 text-xs mt-1">{{ mensajeErrorEstudiante('nombres') }}</p>
@@ -44,8 +46,9 @@
             </div>
 
             <div>
-              <label class="block text-sm font-medium text-gray-700 mb-1">Apellidos</label>
-              <input type="text" formControlName="apellidos"
+              <label for="estudiante-apellidos" class="block text-sm font-medium text-gray-700 mb-1">Apellidos</label>
+              <input id="estudiante-apellidos" type="text" formControlName="apellidos" autocomplete="family-name"
+                (input)="limpiarTexto($event, formEstudiante, 'apellidos')"
                      class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
               @if (mensajeErrorEstudiante('apellidos')) {
                 <p class="text-red-600 text-xs mt-1">{{ mensajeErrorEstudiante('apellidos') }}</p>
@@ -53,8 +56,9 @@
             </div>
 
             <div>
-              <label class="block text-sm font-medium text-gray-700 mb-1">DNI</label>
-              <input type="text" formControlName="dni" maxlength="8" inputmode="numeric"
+              <label for="estudiante-dni" class="block text-sm font-medium text-gray-700 mb-1">DNI</label>
+              <input id="estudiante-dni" type="text" formControlName="dni" maxlength="8" inputmode="numeric"
+                (input)="limpiarNumeros($event, formEstudiante, 'dni')"
                      class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
               @if (mensajeErrorEstudiante('dni')) {
                 <p class="text-red-600 text-xs mt-1">{{ mensajeErrorEstudiante('dni') }}</p>
@@ -62,8 +66,8 @@
             </div>
 
             <div>
-              <label class="block text-sm font-medium text-gray-700 mb-1">Fecha de nacimiento</label>
-              <input type="date" formControlName="fechaNacimiento"
+              <label for="estudiante-fecha" class="block text-sm font-medium text-gray-700 mb-1">Fecha de nacimiento</label>
+              <input id="estudiante-fecha" type="date" formControlName="fechaNacimiento"
                      class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
               @if (mensajeErrorEstudiante('fechaNacimiento')) {
                 <p class="text-red-600 text-xs mt-1">{{ mensajeErrorEstudiante('fechaNacimiento') }}</p>
@@ -71,8 +75,8 @@
             </div>
 
             <div>
-              <label class="block text-sm font-medium text-gray-700 mb-1">Grado</label>
-              <select formControlName="grado"
+              <label for="estudiante-grado" class="block text-sm font-medium text-gray-700 mb-1">Grado</label>
+              <select id="estudiante-grado" formControlName="grado"
                       class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
                 <option value="" disabled>Selecciona un grado</option>
                 @for (g of grados; track g) {
@@ -85,8 +89,8 @@
             </div>
 
             <div>
-              <label class="block text-sm font-medium text-gray-700 mb-1">¿Es nuevo en la institución?</label>
-              <select formControlName="esNuevo"
+              <label for="estudiante-nuevo" class="block text-sm font-medium text-gray-700 mb-1">¿Es nuevo en la institución?</label>
+              <select id="estudiante-nuevo" formControlName="esNuevo"
                       class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
                 <option value="" disabled>Selecciona una opción</option>
                 <option value="si">Sí</option>
@@ -107,8 +111,9 @@
 
           <div class="grid sm:grid-cols-2 gap-4">
             <div class="sm:col-span-2">
-              <label class="block text-sm font-medium text-gray-700 mb-1">Nombre completo</label>
-              <input type="text" formControlName="nombreCompleto"
+              <label for="apoderado-nombre" class="block text-sm font-medium text-gray-700 mb-1">Nombre completo</label>
+              <input id="apoderado-nombre" type="text" formControlName="nombreCompleto" autocomplete="name"
+                (input)="limpiarTexto($event, formApoderado, 'nombreCompleto')"
                      class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
               @if (mensajeErrorApoderado('nombreCompleto')) {
                 <p class="text-red-600 text-xs mt-1">{{ mensajeErrorApoderado('nombreCompleto') }}</p>
@@ -116,8 +121,9 @@
             </div>
 
             <div>
-              <label class="block text-sm font-medium text-gray-700 mb-1">DNI</label>
-              <input type="text" formControlName="dni" maxlength="8" inputmode="numeric"
+              <label for="apoderado-dni" class="block text-sm font-medium text-gray-700 mb-1">DNI</label>
+              <input id="apoderado-dni" type="text" formControlName="dni" maxlength="8" inputmode="numeric"
+                (input)="limpiarNumeros($event, formApoderado, 'dni')"
                      class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
               @if (mensajeErrorApoderado('dni')) {
                 <p class="text-red-600 text-xs mt-1">{{ mensajeErrorApoderado('dni') }}</p>
@@ -125,8 +131,9 @@
             </div>
 
             <div>
-              <label class="block text-sm font-medium text-gray-700 mb-1">Teléfono</label>
-              <input type="text" formControlName="telefono" maxlength="9" inputmode="numeric"
+              <label for="apoderado-telefono" class="block text-sm font-medium text-gray-700 mb-1">Teléfono</label>
+              <input id="apoderado-telefono" type="text" formControlName="telefono" maxlength="9" inputmode="numeric"
+                (input)="limpiarNumeros($event, formApoderado, 'telefono')"
                      class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
               @if (mensajeErrorApoderado('telefono')) {
                 <p class="text-red-600 text-xs mt-1">{{ mensajeErrorApoderado('telefono') }}</p>
@@ -134,8 +141,8 @@
             </div>
 
             <div>
-              <label class="block text-sm font-medium text-gray-700 mb-1">Correo</label>
-              <input type="email" formControlName="correo"
+              <label for="apoderado-correo" class="block text-sm font-medium text-gray-700 mb-1">Correo</label>
+              <input id="apoderado-correo" type="email" formControlName="correo"
                      class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
               @if (mensajeErrorApoderado('correo')) {
                 <p class="text-red-600 text-xs mt-1">{{ mensajeErrorApoderado('correo') }}</p>
@@ -143,8 +150,8 @@
             </div>
 
             <div>
-              <label class="block text-sm font-medium text-gray-700 mb-1">Parentesco</label>
-              <select formControlName="parentesco"
+              <label for="apoderado-parentesco" class="block text-sm font-medium text-gray-700 mb-1">Parentesco</label>
+              <select id="apoderado-parentesco" formControlName="parentesco"
                       class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
                 <option value="" disabled>Selecciona una opción</option>
                 @for (p of parentescos; track p) {
@@ -157,8 +164,8 @@
             </div>
 
             <div class="sm:col-span-2">
-              <label class="block text-sm font-medium text-gray-700 mb-1">Dirección</label>
-              <input type="text" formControlName="direccion"
+              <label for="apoderado-direccion" class="block text-sm font-medium text-gray-700 mb-1">Dirección</label>
+              <input id="apoderado-direccion" type="text" formControlName="direccion"
                      class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
               @if (mensajeErrorApoderado('direccion')) {
                 <p class="text-red-600 text-xs mt-1">{{ mensajeErrorApoderado('direccion') }}</p>
